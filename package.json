@@ -1,0 +1,27 @@
+{
+  "name": "AR-mysql-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PedroCruzNOK/AR-mysql-node.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PedroCruzNOK/AR-mysql-node/issues"
+  },
+  "homepage": "https://github.com/PedroCruzNOK/AR-mysql-node#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.9"
+  }
+}

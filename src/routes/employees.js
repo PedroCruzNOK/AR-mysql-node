@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const mysqlconection = require('../database');
 router.get('/', (req, res)=>{
     mysqlconection.query('SELECT * FROM empleado',(err, rows, fields)=>{
@@ -21,15 +20,12 @@ router.get('/:id',(req, res)=>{
         }
     })
 });
-
 router.post('/', (req, res)=>{
     const {id_empleado, ap_paterno, ap_materno, nombre } = req.body;
+    console.log(req.body);
     const query =  `
-        SET @id_empleado = ?;
-        SET @ap_paterno = ?;
-        SET @ap_materno = ?;
-        SET @nombre = ?;
-        CALL agregarActualizarEmpleado (@id_empleado, @ap_paterno, @ap_materno, @nombre);
+        
+        CALL agregarActualizarEmpleado (?, ?, ?, ?);
 
     `;
     mysqlconection.query(query, [id_empleado, ap_paterno, ap_materno, nombre], (err, rows, fields)=>{

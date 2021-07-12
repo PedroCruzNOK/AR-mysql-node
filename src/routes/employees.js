@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const mysqlconection = require('../database');
-router.get('/', (req, res)=>{
+
+router.get('/empleados', (req, res)=>{
     mysqlconection.query('SELECT * FROM empleado',(err, rows, fields)=>{
         if (!err){
             res.json(rows);
@@ -10,7 +11,7 @@ router.get('/', (req, res)=>{
         }
     });
 });
-router.get('/:id',(req, res)=>{
+router.get('/empleados/:id',(req, res)=>{
     const { id } = req.params;
     mysqlconection.query('SELECT * FROM empleado WHERE id_empleado=?',[id],(err, rows, fields)=>{
         if (!err){
@@ -20,21 +21,5 @@ router.get('/:id',(req, res)=>{
         }
     })
 });
-router.post('/', (req, res)=>{
-    const {id_empleado, ap_paterno, ap_materno, nombre } = req.body;
-    console.log(req.body);
-    const query =  `
-        
-        CALL agregarActualizarEmpleado (?, ?, ?, ?);
 
-    `;
-    mysqlconection.query(query, [id_empleado, ap_paterno, ap_materno, nombre], (err, rows, fields)=>{
-        if (!err){
-            res.json({status:'agregado'});
-        } else {
-            console.log(err);
-        }
-    });
-    
-});
 module.exports = router;
